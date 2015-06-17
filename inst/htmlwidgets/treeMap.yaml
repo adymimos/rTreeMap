@@ -1,0 +1,12 @@
+dependencies:
+- name: jit
+  version: 3.5.3
+  src: htmlwidgets/lib/jit
+  script: 
+          - jit.js
+          - jit-yc.js
+  stylesheet: 
+          - base.css
+          - Treemap.css
+
+
