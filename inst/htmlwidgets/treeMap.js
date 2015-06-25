@@ -14,7 +14,7 @@ initialize: function(el, width, height) {
     //parent box title heights
     titleHeight: 30,
     
-    levelsToShow: 2,
+    levelsToShow: 1,
     //enable animations
     animate: true,
     //box offsets
@@ -49,9 +49,20 @@ Label : {
     Events: {
       enable: true,
       onClick: function(node) {
-        if(node) tm.enter(node);
+        if(node) 
+        {
+        	var click='{ "treemap" : [' +
+                '{ "type":"onMouseEnter" , "node":"'+node.name+'" }]}';
+                Shiny.onInputChange(el.id+'_treemap_event',click);
+         	tm.enter(node);
+        }
+        
+        
       },
       onRightClick: function() {
+      	var click='{ "treemap" : [' +
+                '{ "type":"onMouseLeave" , "node":"'+tm.clickedNode.name+'" }]}';
+                        Shiny.onInputChange(el.id+'_treemap_event',click);
         tm.out();
       },
       onMouseEnter: function(node, eventInfo) {
