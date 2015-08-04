@@ -2,9 +2,9 @@ makeList1<-function(x,i=2){
   color <- c( '#4D4D4D','#393b79','#7b4173','#60BD68','#5DA5DA','#FAA43A','#F17CB0','#B2912F','#B276B2','#DECF3F','#F15854','#C14864')
   if(ncol(x)>2){
     listSplit<-split(x[-1],x[1],drop=T)
-    lapply(names(listSplit),function(y){list(name=y,id=paste0(y,runif(1, 1, 100)),data=list(cases=sum(listSplit[[y]]$N), area =sum(listSplit[[y]]$N),color = color[i]),children=makeList1(listSplit[[y]],i+1))})
+    lapply(names(listSplit),function(y){list(name=y,id=paste0('treenode',round(runif(1, 1, 1000000))),data=list(cases=sum(listSplit[[y]]$N), area =sum(listSplit[[y]]$N),color = color[i]),children=makeList1(listSplit[[y]],i+1))})
   }else{
-    lapply(seq(nrow(x[1])),function(y){list(name=x[,1][y],data=list(cases=x[,2][y], area=x[,2][y],color=color[i]),id=paste0(x[,1][y],runif(1, 1, 100)))})
+    lapply(seq(nrow(x[1])),function(y){list(name=x[,1][y],data=list(cases=x[,2][y], area=x[,2][y],color=color[i]),id=paste0('treenode',round(runif(1, 1, 1000000))))})
   }
 }
 
